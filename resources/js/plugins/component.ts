@@ -6,6 +6,7 @@ import DeleteItem from "../components/dialog/DeleteItem.vue";
 import DeleteIcon from "../components/icons/DeleteIcon.vue";
 import EditIcon from "../components/icons/EditIcon.vue";
 import ShowIcon from "../components/icons/ShowIcon.vue";
+import ToggleIcon from "../components/icons/ToggleIcon.vue";
 import ExportMenu from "../components/dialog/ExportMenu.vue";
 import ImportMenu from "../components/dialog/ImportMenu.vue";
 import MainPage from "../components/pages/MainPage.vue";
@@ -20,6 +21,7 @@ export function defaultComponent(app: App) {
     app.component("delete-item", DeleteItem);
 
     app.component("edit-icon", EditIcon);
+    app.component("toggle-icon", ToggleIcon);
     app.component("delete-icon", DeleteIcon);
     app.component("show-icon", ShowIcon);
 

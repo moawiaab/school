@@ -9,25 +9,25 @@
                 <template v-slot:prepend>
                     <v-icon icon="mdi-file-document-outline" />
                 </template>
-                <v-list-item-title v-text="'تصدير الى csv'" />
+                <v-list-item-title > تصدير الى csv </v-list-item-title>
             </v-list-item>
             <v-list-item variant="plain" @click="downloadFile('xlsx')">
                 <template v-slot:prepend>
                     <v-icon icon="mdi-file-compare" />
                 </template>
-                <v-list-item-title v-text="'تصدير الى xlsx'" />
+                <v-list-item-title > تصدير الى xlsx </v-list-item-title>
             </v-list-item>
             <v-list-item variant="plain"  @click="$htmlToPaper('printMe', null);">
                 <template v-slot:prepend>
                     <v-icon icon="mdi-printer-outline" />
                 </template>
-                <v-list-item-title v-text="'طباعة و pdf'" />
+                <v-list-item-title > طباعة و pdf </v-list-item-title>
             </v-list-item>
         </v-list>
     </v-menu>
 </template>
 
-<script>
+<script lang="ts">
 import { useSettingsHeaderTable } from '../../stores/settings/SettingHeaderTable'
 
 export default {
@@ -35,7 +35,7 @@ export default {
     props: ['url', 'data'],
     setup(props) {
         const item = useSettingsHeaderTable()
-        const downloadFile = (type) => {
+        const downloadFile = (type : any) => {
             item.exportFile(props.data, type,props.url)
         }
         return { item, downloadFile }

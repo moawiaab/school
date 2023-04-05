@@ -2,58 +2,37 @@
     <v-dialog
         v-model="model.showModalEdit"
         persistent
-        max-width="1200"
+        max-width="500"
         scrollable
     >
         <v-form @submit.prevent="submitForm" ref="form">
             <v-card>
-                <v-card-title class="text-h5">
-                    إضافة صلاحية دخول جديدة
+                <v-card-title class="text-h5 text-primary">
+                    تعديل بيانات القسم
                 </v-card-title>
                 <v-divider></v-divider>
                 <v-card-text>
                     <v-text-field
                         clearable
-                        label="اسم الصلاحية"
-                        variant="outlined"
-                        hint="هنا اسم الصلاحية "
-                        v-model="single.entry.title"
-                        :rules="rules.required"
-                        :error-messages="single.errors.title"
-                        required
-                    />
-                    <v-autocomplete
-                        v-model="single.entry.permissions"
-                        :items="single.lists.permissions"
-                        clearable
+                        label="اسم البند"
                         variant="solo"
-                        chips
-                        closable-chips
-                        color="blue-grey-lighten-2"
-                        label="الصلاحيات"
-                        item-title="label"
-                        item-value="value"
-                        multiple
-                    >
-                        <!-- <template v-slot:chip="{ props, item }">
-                            <v-chip
-                                v-bind="props"
-                                :text="item.raw.label"
-                            ></v-chip>
-                        </template>
-                        <template v-slot:item="{ props, item }">
-                            <v-list-item
-                                v-if="item.raw !== 'object'"
-                                v-bind="props"
-                            ></v-list-item>
-                            <v-list-item
-                                v-else
-                                v-bind="props"
-                                :title="item.raw.label"
-                            >
-                            </v-list-item>
-                        </template> -->
-                    </v-autocomplete>
+                        v-model="single.entry.name"
+                        required
+                        color="primary"
+                        disabled
+                    />
+                    <v-text-field
+                        clearable
+                        label="مبلغ الموازنة"
+                        variant="solo"
+                        hint="هنا مبلغ الموازنة"
+                        v-model="single.entry.amount"
+                        :rules="rules.required"
+                        :error-messages="single.errors.amount"
+                        required
+                        color="primary"
+                        type="number"
+                    />
                 </v-card-text>
 
                 <v-divider />
@@ -75,20 +54,20 @@
 </template>
 
 <script lang="ts">
-import {watch } from "vue";
-import { useSingleRoles } from "../../stores/roles/single";
+import { useSingleBudgets } from "../../stores/budgets/single";
 import { useSettingAlert } from "../../stores/settings/SettingAlert";
 import { useSinglePage } from "../../stores/pages/pageSingle";
+import { watch } from "@vue/runtime-core";
 
 export default {
-    name: "EditRole",
+    name: "EditExpanse",
     setup() {
-        const single = useSingleRoles();
+        const single = useSingleBudgets();
         const model = useSinglePage();
-
-        watch(model, (m) => {
-            if (m.showModalEdit) {
-                single.setData(model.entry, model.lists);
+        watch(model, (e) => {
+            if (e.showModalEdit) {
+                single.$reset();
+                single.setupEntry(model.entry, model.lists);
             }
         });
         const submitForm = () =>
@@ -97,6 +76,7 @@ export default {
                     single.updateData().then(() => {
                         model.showModalEdit = false;
                         single.$reset();
+                        model.entry = {};
                     });
                 } else {
                     useSettingAlert().setAlert(
@@ -116,7 +96,9 @@ export default {
         };
 
         const validation = () => {
-            return single.entry.title && single.entry.permissions;
+            return (
+                single.entry.amount
+            );
         };
 
         return {

@@ -1,6 +1,6 @@
 <template>
     <main-page :headers="headers" role="store" title="المخازن" :deletable="false" :deleteAll="false" :expand="true"
-        :addSelected="false" :editable="false" :createdItem="false">
+        :addSelected="false" :editable="false" :createNewItem="false">
 
         <template #table-operation="{ item }">
             <v-icon icon="mdi-plus-circle-outline" color="indigo" v-if="item.child" @click="showDialog(item)" />

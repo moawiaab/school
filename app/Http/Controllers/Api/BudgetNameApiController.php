@@ -46,7 +46,7 @@ class BudgetNameApiController extends Controller
     public function store(StoreBudgetNameRequest $request)
     {
         abort_if(Gate::denies('budget_name_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $budget = BudgetName::create($request->validated());
+        $budget = BudgetName::create($request->validated()+['account_id' => auth()->user()->account_id]);
         return (new BudgetNameResource($budget))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
@@ -114,6 +114,19 @@ class BudgetNameApiController extends Controller
     {
         abort_if(Gate::denies('budget_name_delete'), Response::HTTP_FORBIDDEN, 'ليس لديك الصلاحية الكافية لتنفيذ هذه العملية');
         $budgetName->restore();
+        return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function toggle(BudgetName $budgetName)
+    {
+        abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, 'ليس لديك الصلاحية الكافية لتنفيذ هذه العملية');
+        $budgetName->status = !$budgetName->status;
+        if ($budgetName->type)
+            return response([
+                'message' => 'لا يمكنك قفل اسم الموازنة هذه لانها عامة قم بقفلها من الموازنة'
+            ], Response::HTTP_FAILED_DEPENDENCY);
+        else
+            $budgetName->save();
         return response(null, Response::HTTP_NO_CONTENT);
     }
 }

@@ -36,7 +36,7 @@
         </v-row>
     </v-layout>
 </template>
-<script>
+<script lang="ts">
 import { useSettingPassword } from '@/stores/settings/SettingPassword';
 import { computed } from 'vue';
 
@@ -44,7 +44,7 @@ export default {
     setup() {
         const data = useSettingPassword()
 
-        const formIsValid = computed(() => data.password && data.newPassword)
+        const formIsValid = computed(() => data.password.password && data.password.newPassword)
         const changePassword = () => {
             if (validation()) {
                 data.changePassword().then(() => {

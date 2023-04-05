@@ -7,10 +7,11 @@
         :deleteAll="false"
         :addSelected="false"
         :viewable="false"
+        :createNewItem="false"
     >
-        <template #create>
+        <!-- <template #create>
             <create-category />
-        </template>
+        </template> -->
 
         <template #table-operation="{ item }">
             <toggle-icon

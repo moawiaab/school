@@ -17,8 +17,9 @@
         <template #table-operation="{ item }">
             <toggle-icon
                 @click="pages.toggleItem(item.id)"
-                role="category"
+                role="budget_name"
                 :toggle="item.status"
+                v-if="!item.type"
             />
         </template>
 

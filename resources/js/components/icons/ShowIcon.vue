@@ -2,7 +2,7 @@
     <v-icon icon="mdi-eye-settings-outline" color="blue" class="mx-1" v-if="can(`${role}_access`,  'all')" />
 </template>
 
-<script>
+<script lang="ts">
 import { useAbility } from '@casl/vue'
 export default {
     name: "ShowIcon",

@@ -6,6 +6,7 @@ use App\Support\HasAdvancedFilter;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Budget extends Model
@@ -76,6 +77,11 @@ class Budget extends Model
     public function account()
     {
         return $this->belongsTo(Account::class);
+    }
+
+    public function expanses() : HasMany
+    {
+        return $this->hasMany(Expanse::class);
     }
 
     public function user()

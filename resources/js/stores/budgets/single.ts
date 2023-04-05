@@ -6,25 +6,24 @@ import { usePageIndex } from "../pages/pageIndex";
 interface entryData {
     id: number | null;
     name: string;
-    details: number;
-    type: Number;
+    amount: number;
+    budget_id: number;
     status: number;
     created_at: string;
 }
 
-const route = "budget-names";
-export const useSingleBudgetName = defineStore("single-budget-names", {
+const route = "budgets";
+export const useSingleBudgets = defineStore("single-budget", {
     state: () => ({
         entry: <entryData>{},
         lists: {
-            status: [],
+            budgets: [],
             type: [],
         },
         loading: false,
         errors: {
             name: "",
-            details: "",
-            end_date: "",
+            amount: "",
         },
     }),
     getters: {
@@ -89,7 +88,6 @@ export const useSingleBudgetName = defineStore("single-budget-names", {
         setupEntry(entry: any, lists: any): void {
             this.entry = entry;
             this.lists = lists;
-            // this.entry.type = 0;
         },
     },
 });

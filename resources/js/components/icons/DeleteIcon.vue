@@ -5,7 +5,7 @@
 
 </template>
 
-<script>
+<script lang="ts">
 import { useAbility } from '@casl/vue';
 
 export default {

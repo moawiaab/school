@@ -44,8 +44,8 @@ const items = [
             {
                 text: "الموازنة",
                 icon: "mdi-chart-bell-curve",
-                url: "/expanses",
-                access: "expanse",
+                url: "/budgets",
+                access: "budget",
             },
 
 

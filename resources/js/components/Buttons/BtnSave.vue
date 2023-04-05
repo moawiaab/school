@@ -7,8 +7,9 @@
     </v-btn>
 </template>
 
-<script>
+<script lang="ts">
 export default {
+    name:"BtnSave",
     props: {
         text: { type: String, default: "تنفيذ الأمر" },
         color: { type: String},

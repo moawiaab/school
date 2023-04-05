@@ -2,7 +2,7 @@
     <v-icon icon="mdi-pencil-outline" color="green" class="mx-1" v-if="can(`${role}_edit`,  'all')" />
 </template>
 
-<script>
+<script lang="ts">
 import { useAbility } from '@casl/vue'
 export default {
     name: "EditIcon",

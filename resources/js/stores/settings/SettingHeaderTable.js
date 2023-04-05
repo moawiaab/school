@@ -22,6 +22,7 @@ export const useSettingsHeaderTable = defineStore("settings-header-table", {
             stages: [],
             expanses: [],
             "budget-names" :[],
+            budgets: []
         },
         table: "",
         fileData: [],

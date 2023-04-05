@@ -80,9 +80,9 @@ const routes = [
                 component: () => import("@/Pages/Stages/Index.vue"),
             },
             {
-                path: "/expanses",
+                path: "/budgets",
                 name: " الموازنة العامة",
-                component: () => import("@/Pages/Expanses/Index.vue"),
+                component: () => import("@/Pages/Budgets/Index.vue"),
             },            {
                 path: "/budget-names",
                 name: "اسماء الموازنة",

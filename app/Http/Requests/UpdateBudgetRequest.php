@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class UpdateBudgetRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateBudgetRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Gate::allows('budget_edit');
     }
 
     /**
@@ -19,10 +20,18 @@ class UpdateBudgetRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            //
+            'amount'  => ['required', 'numeric'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'amount.required' =>'ادخل  المبلغ من فضلك',
+            'amount.numeric' =>' المبلغ يجب عن يكون رقما ',
         ];
     }
 }

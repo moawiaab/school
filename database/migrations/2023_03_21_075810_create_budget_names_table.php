@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('details')->nullable();
             $table->tinyInteger('type')->default(1);
             $table->tinyInteger('status')->default(1);
+            $table->bigInteger('account_id')->references('id')->on('accounts');
             $table->timestamps();
             $table->softDeletes();
         });

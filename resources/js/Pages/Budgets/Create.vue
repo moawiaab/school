@@ -1,49 +1,53 @@
 <template>
     <v-btn variant="text" @click="model.showModalCreate = true"
-        >إضافة اسم موازنة</v-btn
+        >إضافة بند موازنة</v-btn
     >
     <v-dialog
         v-model="model.showModalCreate"
         persistent
-        max-width="500"
+        max-width="400"
         scrollable
     >
         <v-form @submit.prevent="submitForm">
             <v-card>
                 <v-card-title class="text-h5 text-primary">
-                    إضافة اسم موازنة جديد
+                    إضافة بند موازنة جديد
                 </v-card-title>
                 <v-divider></v-divider>
                 <v-card-text>
-                    <v-text-field
+                    <v-select
+                        v-model="single.entry.budget_id"
                         clearable
-                        label="اسم الموازنة"
+                        label="بند الموازنة"
+                        :items="single.lists.budgets"
+                        variant="solo"
+                        item-title="name"
+                        item-value="id"
+                    />
+
+                    <!-- <v-text-field
+                        clearable
+                        label="اسم البند"
+                        variant="solo"
+                        hint="هنا اسم البند للمصروف"
                         v-model="single.entry.name"
                         :rules="rules.required"
                         :error-messages="single.errors.name"
                         required
                         color="primary"
-                    />
-                    <v-textarea
+                    /> -->
+                    <v-text-field
                         clearable
-                        label=" تفاصيل اسم الموازنة"
-                        v-model="single.entry.details"
+                        label="مبلغ الموازنة"
+                        variant="solo"
+                        hint="هنا مبلغ الموازنة"
+                        v-model="single.entry.amount"
                         :rules="rules.required"
-                        :error-messages="single.errors.details"
+                        :error-messages="single.errors.amount"
                         required
                         color="primary"
+                        type="number"
                     />
-
-                    <v-select
-                        v-model="single.entry.type"
-                        clearable
-                        label="نوع اسم الموازنة"
-                        :items="single.lists.type"
-                        variant="solo"
-                        item-title="name"
-                        item-value="id"
-                    >
-                    </v-select>
                 </v-card-text>
 
                 <v-divider />
@@ -65,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import { useSingleBudgetName } from "../../stores/budgetName/single";
+import { useSingleBudgets } from "../../stores/budgets/single";
 import { useSettingAlert } from "../../stores/settings/SettingAlert";
 import { useSinglePage } from "../../stores/pages/pageSingle";
 import { watch } from "vue";
@@ -73,12 +77,13 @@ import { watch } from "vue";
 export default {
     name: "CreateExpanse",
     setup() {
-        const single = useSingleBudgetName();
+        const single = useSingleBudgets();
         const model = useSinglePage();
         watch(model, (e) => {
             if (e.showModalCreate) {
                 single.$reset();
                 single.setupEntry(model.entry, model.lists);
+                console.log(model.lists);
             }
         });
 
@@ -93,9 +98,12 @@ export default {
         const submitForm = () => {
             if (validation()) {
                 single.storeData().then(() => {
+                    model.lists.budgets = model.lists.budgets.filter(
+                        (e: any) => e.id != single.entry.budget_id
+                    );
                     model.showModalCreate = false;
-                    single.$reset();
                     model.entry = {};
+                    single.$reset();
                 });
             } else {
                 useSettingAlert().setAlert(
@@ -106,7 +114,7 @@ export default {
             }
         };
         const validation = () => {
-            return single.entry.name && single.entry.details;
+            return single.entry.budget_id && single.entry.amount;
         };
         return {
             model,

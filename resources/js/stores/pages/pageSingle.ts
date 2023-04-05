@@ -2,14 +2,17 @@ import axios from "axios";
 import { defineStore } from "pinia";
 import { useSettingAlert } from "../settings/SettingAlert";
 
+interface ListType {
+    budgets: Array<[]>;
+}
 export const useSinglePage = defineStore("single-pages", {
     state: () => ({
         entry: {},
-        lists: {},
+        lists: <ListType>{},
         showModalCreate: false,
         showModalEdit: false,
         showModalShow: false,
-        route: String,
+        route: "",
         loading: false,
         query: {},
     }),
@@ -36,11 +39,11 @@ export const useSinglePage = defineStore("single-pages", {
                 .then((response) => {
                     this.entry = response.data.data ?? [];
                     this.lists = response.data.meta ?? [];
-                })
-                .finally(() => (this.loading = false));
+                });
+                this.loading = false
         },
 
-        setRoute(route: String) {
+        setRoute(route: string) {
             this.route = route;
         },
 

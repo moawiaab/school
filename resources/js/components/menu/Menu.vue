@@ -32,9 +32,8 @@
                     :title="item.text"
                     :key="item.url"
                     :to="item.url"
-                     active-color="primary"
+                    active-color="primary"
                     v-if="can(`${item.access}_access`, 'all')"
-
                 ></v-list-item>
             </template>
         </template>
@@ -66,5 +65,4 @@ export default {
         // margin-left: 10px !important;
     }
 }
-
 </style>
