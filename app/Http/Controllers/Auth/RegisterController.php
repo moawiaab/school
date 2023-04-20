@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -51,8 +52,11 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'details' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required', 'string', 'min:8'],
+            'age' => ['nullable', 'date'],
         ]);
     }
 
@@ -64,10 +68,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user = User::create([
+            'name'       => $data['name'],
+            'email'      => $data['email'],
+            'account_id' => 1,
+            'role_id'    => 3,
+            'phone'      => $data['phone'],
+            'password'   => Hash::make($data['password']),
         ]);
+
+        $student = Student::create([
+            'name'        => $data['name'],
+            'user_id'     => $user->id,
+            'account_id'  => 1,
+            'phone'       => $data['phone'],
+            'age'         => $data['age'],
+            'details'     => $data['details'] ?? '',
+        ]);
+        $student->levels()->sync(1);
+        return $user;
     }
 }

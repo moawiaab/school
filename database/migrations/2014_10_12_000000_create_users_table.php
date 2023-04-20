@@ -21,10 +21,11 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
+            // $table->foreignId('current_team_id')->nullable();
             $table->integer('role_id')->index();
             $table->tinyInteger('status')->default(1);
             $table->integer('account_id')->index();
+            $table->tinyInteger('type')->default(3);
             $table->timestamps();
             $table->softDeletes();
         });

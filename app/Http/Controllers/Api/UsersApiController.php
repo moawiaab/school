@@ -32,7 +32,7 @@ class UsersApiController extends Controller
                 ->when(auth()->user()->account_id != 1, function ($i) {
                     $i->where('account_id', auth()->user()->account_id);
                 })
-                ->filter(FacadesRequest::only('trashed'))
+                ->filter(FacadesRequest::only(['trashed', 'type']))
                 ->paginate(request('rowsPerPage', 20))
         );
     }

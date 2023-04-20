@@ -231,6 +231,114 @@ class PermissionSeeder extends Seeder
                 'title' => 'budget_delete',
             ],
 
+
+            [
+                'details' => 'عرض الطلاب',
+                'status' => 1,
+                'title' => 'student_access',
+            ],
+            [
+                'details' => 'إنشاء طالب جديد',
+                'status' => 1,
+                'title' => 'student_create',
+            ],
+            [
+                'details' => 'تعديل الطالب',
+                'status' => 1,
+                'title' => 'student_edit',
+            ],
+            [
+                'details' => 'حذف الطالب',
+                'status' => 1,
+                'title' => 'student_delete',
+            ],
+
+            [
+                'details' => 'عرض المواد الدراسية',
+                'status' => 1,
+                'title' => 'material_access',
+            ],
+            [
+                'details' => 'إنشاء مادة دراسية جديدة',
+                'status' => 1,
+                'title' => 'material_create',
+            ],
+            [
+                'details' => 'تعديل المادة دراسية',
+                'status' => 1,
+                'title' => 'material_edit',
+            ],
+            [
+                'details' => 'حذف المادة دراسية',
+                'status' => 1,
+                'title' => 'material_delete',
+            ],
+
+            [
+                'details' => 'عرض الفصول الدراسية',
+                'status' => 1,
+                'title' => 'level_access',
+            ],
+            [
+                'details' => 'إنشاء فصل دراسي جديدة',
+                'status' => 1,
+                'title' => 'level_create',
+            ],
+            [
+                'details' => 'تعديل الفصل دراسي',
+                'status' => 1,
+                'title' => 'level_edit',
+            ],
+            [
+                'details' => 'حذف الفصل دراسي',
+                'status' => 1,
+                'title' => 'level_delete',
+            ],
+
+
+            [
+                'details' => 'عرض المعلمين',
+                'status' => 1,
+                'title' => 'teacher_access',
+            ],
+            [
+                'details' => 'إنشاء معلم جديد',
+                'status' => 1,
+                'title' => 'teacher_create',
+            ],
+            [
+                'details' => 'تعديل المعلم',
+                'status' => 1,
+                'title' => 'teacher_edit',
+            ],
+            [
+                'details' => 'حذف المعلم',
+                'status' => 1,
+                'title' => 'teacher_delete',
+            ],
+
+            [
+                'details' => 'عرض الدروس',
+                'status' => 1,
+                'title' => 'tutorial_access',
+            ],
+            [
+                'details' => 'إنشاء درس جديد',
+                'status' => 1,
+                'title' => 'tutorial_create',
+            ],
+            [
+                'details' => 'تعديل الدرس',
+                'status' => 1,
+                'title' => 'tutorial_edit',
+            ],
+            [
+                'details' => 'حذف الدرس',
+                'status' => 1,
+                'title' => 'tutorial_delete',
+            ],
+
+
         ];
         Permission::insert($permissions);
     }

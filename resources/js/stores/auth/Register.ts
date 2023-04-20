@@ -6,7 +6,7 @@ import { useSettingsItem } from "../settings/SettingItem";
 interface entryData {
     id: Number | null;
     name: String;
-    userName: String;
+    age: String;
     email: String | null | any;
     phone: String;
     password: String;
@@ -22,22 +22,12 @@ export const useSingleRegister = defineStore("single-register", {
         entry: <entryData>{},
         lists: {
             type: [],
-            items: [
-                {
-                    id: 1,
-                    title: "محلات دواجن",
-                },
-                {
-                    id: 2,
-                    title: "مغلق",
-                },
-            ],
         },
         loading: false,
         showModalCreate: false,
         token: {},
         errors: {
-            userName: "",
+            age: "",
             name: "",
             email: "",
             amount: "",

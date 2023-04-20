@@ -5,28 +5,28 @@ import LoginLayout from "@/layouts/LoginLayout.vue";
 const routes = [
     {
         path: '/login',
-        name : "Layout Login",
-        component : LoginLayout,
+        name: "Layout Login",
+        component: LoginLayout,
         redirect: "/login",
-        children : [
+        children: [
             {
                 path: '/login',
-                name : "Login",
+                name: "Login",
                 component: () => import("@/Pages/auth/Login.vue"),
             },
             {
-                path : '/password/reset',
-                name : "request",
+                path: '/password/reset',
+                name: "request",
                 component: () => import("@/Pages/auth/Reset.vue"),
             },
             {
-                path : '/reset-password/:token',
-                name : "reset-password",
+                path: '/reset-password/:token',
+                name: "reset-password",
                 component: () => import("@/Pages/auth/ResetPassword.vue"),
             },
             {
-                path : '/register',
-                name : "register",
+                path: '/register',
+                name: "register",
                 component: () => import("@/Pages/auth/Register.vue"),
             }
 
@@ -49,10 +49,21 @@ const routes = [
                 component: () => import("@/Pages/Users/Index.vue"),
             },
             {
-                path: "/accounts",
-                name: " الفروع",
-                component: () => import("@/Pages/Accounts/Index.vue"),
+                path: "/materials",
+                name: " المادة الدراسية",
+                component: () => import("@/Pages/Materials/Index.vue"),
             },
+            {
+                path: "/students",
+                name: " الطلاب",
+                component: () => import("@/Pages/Students/Index.vue"),
+            },
+            {
+                path: "/levels",
+                name: " الفصول الدراسي",
+                component: () => import("@/Pages/Levels/Index.vue"),
+            },
+
             {
                 path: "/roles",
                 name: " الصلاحيات",
@@ -60,7 +71,7 @@ const routes = [
             },
             {
                 path: "/permissions",
-                name : "الأذونات",
+                name: "الأذونات",
                 component: () => import("@/Pages/Permissions/Index.vue"),
             },
 
@@ -83,18 +94,46 @@ const routes = [
                 path: "/budgets",
                 name: " الموازنة العامة",
                 component: () => import("@/Pages/Budgets/Index.vue"),
-            },            {
+            },
+            {
                 path: "/budget-names",
                 name: "اسماء الموازنة",
                 component: () => import("@/Pages/BudgetName/Index.vue"),
             },
 
+            {
+                path: "/teachers",
+                name: "المعلمين",
+                component: () => import("@/Pages/Teachers/Index.vue"),
+            },
+
+            {
+                path: "/tutorials",
+                name: "الدروس",
+                component: () => import("@/Pages/Tutorials/Index.vue"),
+            },
+
+            {
+                path: "/tutorials/details/:id",
+                name: "تفاصيل الدروس",
+                component: () => import("@/Pages/Tutorials/Details.vue"),
+            },
+
+            {
+                path: "/tutorials/add-ask/:id",
+                name: "إضافة سؤال",
+                component: () => import("@/Pages/Tutorials/CreateAsk.vue"),
+            },
+
+
+
+
         ],
     },
     {
-        path : '/:pathMatch(.*)*',
-        name : 'NotFound',
-        component : () => import("@/Pages/NotFound.vue")
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import("@/Pages/NotFound.vue")
     }
 ];
 

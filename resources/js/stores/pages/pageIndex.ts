@@ -18,6 +18,7 @@ export const usePageIndex = defineStore("index-pages", {
         },
         loading: false,
         filters: { s: "", trashed: "" },
+        filter: {},
         showDeleted: false,
         itemId: null,
         itemsSelected: [],
@@ -25,6 +26,7 @@ export const usePageIndex = defineStore("index-pages", {
         route: "",
         alertMessage: String,
         table: "",
+        dialog : false,
     }),
     getters: {
         // items: (state) => state.data,
@@ -36,14 +38,14 @@ export const usePageIndex = defineStore("index-pages", {
             return new Promise(async (resolve, reject) => {
                 await axios
                     .get(this.route.toString(), {
-                        params: { ...this.filters, ...this.query },
+                        params: { ...this.filters, ...this.query, ...this.filter },
                     })
                     .then((response) => {
                         this.data = response.data.data;
                         this.total = response.data.meta.total;
                         this.page = response.data.meta.current_page;
                     })
-                    .catch((error) => {});
+                    .catch((error) => { });
                 this.loading = false;
             });
         },
@@ -52,6 +54,9 @@ export const usePageIndex = defineStore("index-pages", {
         },
         setFilters(q: any) {
             this.filters = q;
+        },
+        setFilter(q: any) {
+            this.filter = q;
         },
         editItem(item: any) {
             const single = useSinglePage();
@@ -80,6 +85,27 @@ export const usePageIndex = defineStore("index-pages", {
                     this.showDeleted = false;
                     this.fetchIndexData();
                     this.itemId = null;
+                })
+                .catch((error) => {
+                    useSettingAlert().setAlert(
+                        error.response.data.message,
+                        "warning",
+                        true
+                    );
+                });
+        },
+
+        delete(url: string) {
+            axios
+                .delete(`${url}/delete`)
+                .then((response) => {
+                    useSettingAlert().setAlert(
+                        "تم الحذف بنجاح",
+                        "success",
+                        true
+                    );
+                    this.dialog = false;
+                    this.fetchIndexData();
                 })
                 .catch((error) => {
                     useSettingAlert().setAlert(

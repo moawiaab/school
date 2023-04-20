@@ -1,0 +1,28 @@
+{
+    "cSpell.words": [
+        "splitpanes",
+        "إنشاء",
+        "الالكتروني",
+        "البريد",
+        "الحقل",
+        "السر",
+        "تترك",
+        "تسجيل",
+        "جديد",
+        "حساب",
+        "دخول",
+        "سمحت",
+        "فارغاً",
+        "كلمة"
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "node_modules": true
+    },
+    "explorerExclude.backup": {}
+}

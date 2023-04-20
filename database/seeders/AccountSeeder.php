@@ -32,6 +32,12 @@ class AccountSeeder extends Seeder
                 'account_id'     => 1,
                 'created_at'     => now(),
             ],
+            [
+                'id'             => 3,
+                'title'          => 'الطلاب',
+                'account_id'     => 1,
+                'created_at'     => now(),
+            ],
         ];
 
         Role::insert($role);
@@ -63,6 +69,7 @@ class AccountSeeder extends Seeder
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'role_id'        => 1,
+                'type'           => 1,
                 'account_id'     => 1,
                 'created_at'     => now(),
             ],
@@ -73,6 +80,7 @@ class AccountSeeder extends Seeder
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'role_id'        => 2,
+                'type'           => 2,
                 'account_id'     => 2,
                 'created_at'     => now(),
             ],

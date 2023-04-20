@@ -88,6 +88,8 @@ class User extends Authenticatable implements HasMedia
             } elseif ($trashed === 'only') {
                 $query->onlyTrashed();
             }
+        })->when($filters['type'] ?? null, function ($query, $type){
+            $query->where('type',$type);
         });
     }
 

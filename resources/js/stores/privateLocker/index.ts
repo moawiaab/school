@@ -27,7 +27,6 @@ export const useUserPrivate = defineStore("index-private", {
                         "success",
                         true
                     );
-                    this.showDeleted = false;
                     usePageIndex().fetchIndexData();
                     this.dialog = false;
                     this.userId = null;
@@ -39,8 +38,8 @@ export const useUserPrivate = defineStore("index-private", {
                         "warning",
                         true
                     );
-                })
-                .finally(() => (this.loading = false));
+                });
+                this.loading = false
         },
         setId(id: any) {
             this.userId = id.id;

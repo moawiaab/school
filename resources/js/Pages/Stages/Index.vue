@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts" setup>
-import CreateCategory from "./Create.vue";
+import CreateStage from "./Create.vue";
 import EditCategory from "./Edit.vue";
 import ShowCategory from "./Show.vue";
 import { usePageIndex } from "../../stores/pages/pageIndex";

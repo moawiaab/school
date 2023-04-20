@@ -40,7 +40,7 @@ import { useSinglePage } from '../../stores/pages/pageSingle';
 import { watch } from 'vue';
 
 export default {
-    name: "CreateUser",
+    name: "CreateStage",
     setup() {
         const single = useSingleStages();
         const model = useSinglePage();

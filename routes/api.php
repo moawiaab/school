@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\LoginApiController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Api', 'middleware' => ['auth:sanctum']], function () {
@@ -59,5 +60,30 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:sanctum']], function 
     //! Budgets controller
     Route::resource('budgets', 'BudgetApiController');
 
+    //! Students controller
+    Route::resource('students', 'StudentApiController');
+    Route::put('/students/{item}/restore', 'StudentApiController@restore');
+
+    //! levels controller
+    Route::resource('levels', 'LevelApiController');
+    Route::put('/levels/{item}/restore', 'LevelApiController@restore');
+
+    //! materials controller
+    Route::resource('materials', 'MaterialApiController');
+    Route::put('/materials/{item}/restore', 'MaterialApiController@restore');
+    Route::post('/materials/data', 'MaterialApiController@addData');
+    Route::delete('/materials/{item}/delete', 'MaterialApiController@deleteItem');
+
+    //! teachers controller
+    Route::resource('teachers', 'TeacherApiController');
+    Route::put('/teachers/{item}/restore', 'TeacherApiController@restore');
+
+    //! tutorials controller
+    Route::resource('tutorials', 'TutorialApiController');
+    Route::put('/tutorials/{item}/restore', 'TutorialApiController@restore');
+    Route::post('/tutorials/add-asks', 'TutorialApiController@asks');
 
 });
+
+Route::post('/login', [LoginApiController::class, 'login']);
+Route::post('/register', [LoginApiController::class, 'store']);
