@@ -64,7 +64,7 @@
                             />
 
                             <v-file-input
-                                label="تحميل مقطع الصوت "
+                                label="تحميل صور شخصية للطالب "
                                 accept="image/*"
                                 v-model="single.entry.photo"
                                 :rules="rules.required"
